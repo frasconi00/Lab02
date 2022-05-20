@@ -1,6 +1,7 @@
 package it.polito.tdp.alien;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 //import java.util.Set;
@@ -42,6 +43,18 @@ public class FXMLController {
     		String[] parole = testo.split(" ");
     		if(parole.length==1) {
     			
+    			parole[0]=parole[0].toLowerCase();
+    			
+    			if(parole[0].contains("?")) {
+    				
+    				//conta che ci sia solo un punto interrogativo
+    				
+    				//funzione vera e propria
+    				
+    				
+    				
+    			}
+    			
     			List<String> traduzioni = model.traduci(parole[0]);
     			
     			if(traduzioni!=null) {
@@ -60,11 +73,14 @@ public class FXMLController {
     					txtArea.setText("Inserire solo caratteri alfabetici");
     				}
     					
-    			}
+    			}else
+    				txtArea.setText("Parola aliena non presente nel dizionario");
     			
     		}else if(parole.length==2) {
     			
     			if(parole[0].matches("[a-zA-Z]+") && parole[1].matches("[a-zA-Z]+")) {
+    				parole[0]=parole[0].toLowerCase();
+    				parole[1]=parole[1].toLowerCase();
     				model.add(parole[0], parole[1]);
     				txtArea.setText("Nuova traduzione aggiunta:\n"+parole[0]+" : "+parole[1]);
     			}
@@ -73,7 +89,8 @@ public class FXMLController {
     			}
     			
     		}else {
-    			
+    			txtArea.setText("Errore. Inserire una parola aliena per averne la traduzione"
+    					+ "\no 2 per aggiungere una parola aliena al dizionario");
     		}
     	}
 
